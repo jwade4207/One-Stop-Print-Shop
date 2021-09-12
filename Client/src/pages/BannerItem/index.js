@@ -46,7 +46,7 @@ function BannerItem(item) {
                 <div>{quantity} {pluralize("item", quantity)} in stock</div>
                 <span>${price}</span>
             </div>
-            <button> onClick={addToCart}</button>
+            <button onClick={addToCart}>Add to Cart</button>
         </div>
     );
 }
