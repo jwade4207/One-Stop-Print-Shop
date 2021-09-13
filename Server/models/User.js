@@ -6,10 +6,14 @@ const bcrypt = require('bcrypt');
 
 const userSchema = new Schema(
     {
-        username: {
+        firstName: {
             type: String,
             required: true,
-            unique: true,
+            trim: true
+        },
+        lastName: {
+            type: String,
+            required: true,
             trim: true
         },
         email: {
@@ -20,14 +24,8 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        //saveBanners: [bannerSchema],
-    },
-    {
-        toJSON: {
-            virtuals: true,
-        },
-    }
-);
+        orders: [Order.schema]
+    });
 
 //has the user password
 userSchema.pre('save', async function (next) {
@@ -44,10 +42,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
 };
 
-//when we get the user, we will get the "banner count" to show how man banners they have saved
-// userSchema.virtuals('bannerCount').get(function () {
-//     return this.savedBanners.length;
-// })
 
 const User = model('User', userSchema);
 
