@@ -60,7 +60,7 @@ const resolvers = {
             for(let i = 0 ; i < banners.length; i++) {
                 const banner = await stripe.banners.create({
                     name: banners[i].name,
-                    description: banners[i].description,
+                    customMessage: banners[i].customMessage,
                     images: [`${url}/images/${products[i].image}`]
                 });
 

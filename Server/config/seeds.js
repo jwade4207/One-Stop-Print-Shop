@@ -17,7 +17,7 @@ db.once('open', async () => {
     const banners = await Banner.insertMAny([
         {
             name:'small-banner-example ',
-            description:'this is a examply im just pluggin in right now and we can change later, but will have the layout for the 3 different sizes',
+            customMessage:'this is a examply im just pluggin in right now and we can change later, but will have the layout for the 3 different sizes',
             image: 'insert-img',
             size: sizes[0]._id,
             price: 29.99,
@@ -25,7 +25,7 @@ db.once('open', async () => {
         },
         {
             name:'medium-banner-example ',
-            description:'this is a examply im just pluggin in right now and we can change later, but will have the layout for the 3 different sizes',
+            customMessage:'this is a examply im just pluggin in right now and we can change later, but will have the layout for the 3 different sizes',
             image: 'insert-img',
             size: sizes[1]._id,
             price: 39.99,
@@ -33,7 +33,7 @@ db.once('open', async () => {
         },
         {
             name:'large-banner-example ',
-            description:'this is a examply im just pluggin in right now and we can change later, but will have the layout for the 3 different sizes',
+            customMessage:'this is a examply im just pluggin in right now and we can change later, but will have the layout for the 3 different sizes',
             image: 'insert-img',
             size: sizes[2]._id,
             price: 89.99,
