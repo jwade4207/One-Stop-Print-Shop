@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { pluralize } from "../../utils/helpers"
+import { pluralize } from "../utils/helpers"
 import { useStoreContext } from '../../utils/GlobalState';
-import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../utils/actions';
 
 function BannerItem(item) {
     const [state, dispatch] = useStoreContext();
@@ -12,7 +12,9 @@ function BannerItem(item) {
         name,
         _id,
         price,
-        quantity
+        quantity,
+        size,
+        customMessage
     } = item;
 
     const { cart } = state
