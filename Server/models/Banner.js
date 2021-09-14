@@ -8,7 +8,7 @@ const bannerSchema = new Schema({
         require: true,
         trim: true
     },
-    description: {
+    customMessage: {
         type: String
     },
     image: {

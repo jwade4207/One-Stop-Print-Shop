@@ -14,7 +14,7 @@ const typeDefs = gql `
     type Banner {
         _id: ID
         name: String
-        description: String
+        customMessage: String
         image: String
         quantity: Int
         price: Float
