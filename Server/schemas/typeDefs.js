@@ -42,7 +42,7 @@ const typeDefs = gql `
 
     type Query {
         size: String
-        banners(size:ID name: String): [Banner]
+        banners(size:ID, name: String): [Banner]
         banner(_id: ID!): Banner
         user: User
         order(_id: ID!): Order
@@ -52,6 +52,7 @@ const typeDefs = gql `
     type Mutation {
         login(email: String, password: String): Auth
         addUser(firstName: String, lastName: String, username: String, email: String, password: String): Auth
+        addOrder(banners: [ID]!): Order
         updateUser(firstName: String, lastName: String, email: String, password: String): User
         updateBanner(_id: ID!, quantity: Int!): Banner
     }
