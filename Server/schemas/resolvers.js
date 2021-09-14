@@ -55,7 +55,7 @@ const resolvers = {
             const order = new Order({ products: args.products });
             const line_items = [];
 
-            const { products } = await order.populate('banners').execPopulate();
+            const { banners } = await order.populate('banners').execPopulate();
 
             for(let i = 0 ; i < banners.length; i++) {
                 const banner = await stripe.banners.create({
