@@ -22,7 +22,7 @@ const resolvers = {
             }
             return await Banner.find(params).populate('size');
         },
-        Banner: async (parent, {_id }) => {
+        Banner: async (parent, { _id }) => {
             return await Banner.findById(_id).populate('size');
         },
         user: async( parent, args, context) => {

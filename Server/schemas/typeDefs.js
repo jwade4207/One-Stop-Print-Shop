@@ -26,7 +26,7 @@ const typeDefs = gql `
         purchaseDate: String
         banner: [Banner]
     }
-    
+
     type Size {
         name: String!
     }
@@ -41,20 +41,19 @@ const typeDefs = gql `
     }
 
     type Query {
-        size: []
+        size: String
         banners(size:ID name: String): [Banner]
         banner(_id: ID!): Banner
         user: User
         order(_id: ID!): Order
         checkout(banners: [ID]!): Checkout
-      }
-    
+    }
+
     type Mutation {
         login(email: String, password: String): Auth
-        addUser(firstName; String, lastName: String, username: String, email: String, password: String): Auth
+        addUser(firstName: String, lastName: String, username: String, email: String, password: String): Auth
         updateUser(firstName: String, lastName: String, email: String, password: String): User
         updateBanner(_id: ID!, quantity: Int!): Banner
-        login(email: String!, password: String!): Auth
     }
 `;
 

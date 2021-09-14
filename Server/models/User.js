@@ -1,8 +1,9 @@
-const { Schema, model} = require('mongoose');
+const mongoose = require('mongoose');
+const { Schema } = require('mongoose');
 const bcrypt = require('bcrypt');
-
+const { Order } = require('./Order')
 //import the bannerSchema
-//const bannerSchema = require('./Banner');
+const Banner = require('./Banner');
 
 const userSchema = new Schema(
     {
@@ -24,7 +25,9 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        orders: [Order.schema]
+        orders:{
+            type: Schema.Types.Array
+        }
     });
 
 //has the user password
@@ -42,7 +45,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
 };
 
-
-const User = model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
