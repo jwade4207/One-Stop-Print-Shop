@@ -5,8 +5,8 @@ import Cart from '../components/Cart';
 const Home = () => {
     return (
         <div className="container">
-            <CategoryMenu />
-            <Banner/>
+            {/*<CategoryMenu />
+            <Banner/> */}
             <Cart />
         </div>
     );
