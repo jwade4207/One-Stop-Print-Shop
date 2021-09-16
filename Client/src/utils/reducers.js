@@ -1,7 +1,7 @@
 import { useReducer } from 'react'
 //CART FUNCTION
 import {
-    UPDATE_BANNER,
+    // UPDATE_BANNER,
     ADD_TO_CART,
     ADD_MULTIPLE_TO_CART,
     REMOVE_FROM_CART,
@@ -13,11 +13,11 @@ import {
 export const reducer = (state, action) => {
     switch (action.type) {
         // if action type value is the value of `UPDATE_PRODUCTS`, return a new state object with an updated products array
-        case UPDATE_BANNER:
-            return {
-                ...state,
-                products: [...action.banner],
-            };
+        // case UPDATE_BANNER:
+        //     return {
+        //         ...state,
+        //         products: [...action.banner],
+        //     };
         case ADD_TO_CART:
             return {
                 ...state,

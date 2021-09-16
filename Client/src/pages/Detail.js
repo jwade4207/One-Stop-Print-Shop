@@ -7,7 +7,7 @@ import { QUERY_BANNERS } from "../utils/queries";
 import Cart from "../components/Cart";
 import {
     REMOVE_FROM_CART,
-    UPDATE_CART_QUANTITY,
+    // UPDATE_CART_QUANTITY,
     ADD_TO_CART,
     UPDATE_BANNERS,
 } from "../utils/actions";
@@ -23,20 +23,27 @@ function Detail() {
     const { banners, cart } = state;
 
     const addToCart = () => {
-        const itemInCart = cart.find((cartItem) => cartItem._id === id);
 
-        if (itemInCart) {
-            dispatch({
-                type: UPDATE_CART_QUANTITY,
-                _id: id,
-                purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
-            });
-        } else {
+        const addToCart = () => {
             dispatch({
                 type: ADD_TO_CART,
-                banner: { ...currentBanner, purchaseQuantity: 1 },
+                product: { ...currentBanner, purchaseQuantity: 1 }
             });
-        }
+        };
+        // const itemInCart = cart.find((cartItem) => cartItem._id === id);
+
+        // if (itemInCart) {
+        //     dispatch({
+        //         type: UPDATE_CART_QUANTITY,
+        //         _id: id,
+        //         purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+        //     });
+        // } else {
+        //     dispatch({
+        //         type: ADD_TO_CART,
+        //         banner: { ...currentBanner, purchaseQuantity: 1 },
+        //     });
+        // }
     };
 
     const removeFromCart = () => {
@@ -85,6 +92,7 @@ function Detail() {
                 </div>
             ) : null}
             {loading ? <img src={''} alt="loading" /> : null}
+            <Cart />
         </>
     );
 }
