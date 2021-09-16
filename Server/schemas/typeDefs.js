@@ -1,6 +1,21 @@
 const { gql } = require('apollo-server-express');
 
-const typeDefs = gql `
+const typeDefs = gql`
+
+    input SizeInput {
+        name: String!
+    }
+
+    input BannerInput {
+        _id: ID
+        name: String
+        customMessage: String
+        image: String
+        quantity: Int
+        price: Float
+        size: SizeInput
+    }
+
     type User {
         _id: ID
         firstName: String!
@@ -14,7 +29,7 @@ const typeDefs = gql `
     type Banner {
         _id: ID
         name: String
-        description: String
+        customMessage: String
         image: String
         quantity: Int
         price: Float
@@ -26,7 +41,7 @@ const typeDefs = gql `
         purchaseDate: String
         banner: [Banner]
     }
-    
+
     type Size {
         name: String!
     }
@@ -41,20 +56,24 @@ const typeDefs = gql `
     }
 
     type Query {
-        size: []
-        banners(size:ID name: String): [Banner]
+        size: String
+        banners(size:ID, name: String): [Banner]
         banner(_id: ID!): Banner
         user: User
         order(_id: ID!): Order
         checkout(banners: [ID]!): Checkout
-      }
-    
+    }
+
     type Mutation {
         login(email: String, password: String): Auth
-        addUser(firstName; String, lastName: String, username: String, email: String, password: String): Auth
+        addUser(firstName: String, lastName: String, username: String, email: String, password: String): Auth
+<<<<<<< HEAD
+        addOrder(banners: [BannerInput]): Order
+=======
+        addOrder(banners: [ID]!): Order
+>>>>>>> 3ac8433a0c6e12ab269548d375290ebfec8cd47e
         updateUser(firstName: String, lastName: String, email: String, password: String): User
         updateBanner(_id: ID!, quantity: Int!): Banner
-        login(email: String!, password: String!): Auth
     }
 `;
 
