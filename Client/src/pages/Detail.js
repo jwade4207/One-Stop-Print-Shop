@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { useStoreContext } from "../utils/GlobalState";
 import { QUERY_BANNERS } from "../utils/queries";
-import spinner from "../assets/spinner.gif";
+//import spinner from "../assets/spinner.gif";
 import Cart from "../components/Cart";
 import {
     REMOVE_FROM_CART,
@@ -84,7 +84,7 @@ function Detail() {
                     />
                 </div>
             ) : null}
-            {loading ? <img src={spinner} alt="loading" /> : null}
+            {loading ? <img src={''} alt="loading" /> : null}
         </>
     );
 }
