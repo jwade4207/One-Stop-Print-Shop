@@ -24,11 +24,11 @@ export const reducer = (state, action) => {
                 cartOpen: true,
                 cart: [...state.cart, action.banner]
             };
-        case ADD_MULTIPLE_TO_CART:
-            return {
-                ...state,
-                cart: [...state.cart, ...action.banner],
-            };
+        // case ADD_MULTIPLE_TO_CART:
+        //     return {
+        //         ...state,
+        //         cart: [...state.cart, ...action.banner],
+        //     };
         case REMOVE_FROM_CART:
             let newState = state.cart.filter(banner => {
                 return banner._id !== action._id;

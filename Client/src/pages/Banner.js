@@ -10,23 +10,24 @@ import { ADD_TO_CART } from '../utils/actions';
 import { idbPromise } from '../utils/helpers';
 
 
-function Banner(item) {
+function Banner() {
 
     const [state, dispatch] = useStoreContext();
     // const { loading, data } = useQuery(QUERY_BANNERS);
 
-    const {
-        image,
-        name,
-        _id,
-        price,
-        quantity
-      } = item
+    // const {
+    //     image,
+    //     name,
+    //     _id,
+    //     price,
+    //     quantity
+    //   } = item
+
 
     const addToCart = () => {
         dispatch({
             type: ADD_TO_CART,
-            banner: { ...item, purchaseQuantity: 1 }
+            banner: { purchaseQuantity: 1 }
         });
     };
 
@@ -112,7 +113,7 @@ function Banner(item) {
                             </Button>
                         </Form>
                         <div>
-                        <button onClick={addToCart}>Add to cart</button>
+                        <Button onClick={addToCart}>Add to cart</Button>
                         </div>
                     </Container>
                 </Row>
