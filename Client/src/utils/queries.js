@@ -18,7 +18,6 @@ export const QUERY_USER = gql`
             }
         }
     }
-<<<<<<< HEAD
 `
 
 export const QUERY_BANNERS = gql`
@@ -27,7 +26,6 @@ export const QUERY_BANNERS = gql`
       name _id
     }
   }
-=======
 `;
 
 export const QUERY_CHECKOUT = gql`
@@ -36,5 +34,4 @@ export const QUERY_CHECKOUT = gql`
             session
         }
     }
->>>>>>> 3ac8433a0c6e12ab269548d375290ebfec8cd47e
 `;
