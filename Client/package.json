@@ -4,6 +4,11 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.4.11",
+<<<<<<< HEAD
+=======
+    "@stripe/react-stripe-js": "^1.4.1",
+    "@stripe/stripe-js": "^1.17.1",
+>>>>>>> 3ac8433a0c6e12ab269548d375290ebfec8cd47e
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
