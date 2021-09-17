@@ -1,11 +1,11 @@
 
 import React, { useEffect } from "react";
 import { useQuery } from '@apollo/client';
-// import BannerItem from "./BannerItem";
+import BannerItem from "./BannerItem";
 import { Form, DropdownButton, InputGroup, Dropdown, Container, Row, Col, Button, FormControl } from "react-bootstrap";
 import { useStoreContext } from '../utils/GlobalState';
 import { QUERY_BANNERS } from '../utils/queries';
-import { UPDATE_BANNERS } from "../utils/actions";
+import { UPDATE_BANNER } from "../utils/actions";
 import { ADD_TO_CART } from '../utils/actions';
 import { idbPromise } from '../utils/helpers';
 
@@ -23,13 +23,6 @@ function Banner() {
     //     quantity
     //   } = item
 
-
-    const addToCart = () => {
-        dispatch({
-            type: ADD_TO_CART,
-            banner: { purchaseQuantity: 1 }
-        });
-    };
 
     // useEffect(() => {
     //     //if there is date to be stored
@@ -57,65 +50,25 @@ function Banner() {
     // }, [data, loading, dispatch]);
 
     return (
-        <div>
-            <Container fluid>
-                <Row id="banner-header">
-                    <Col>
-                        <h1 className="text-center mt-5">Vinyl Banners</h1>
-                        <h3 style={{textAlign: "center"}}>Create Your Banner</h3>
-                        <img src=""></img>
-                    </Col>
-                </Row>
-                <Row>
-                    <Container>
-                        <Form>
-                            <Form.Label>Step 1 - Choose size</Form.Label>
-                            
-                                <DropdownButton
-                                    variant="outline-secondary"
-                                    title="Dropdown"
-                                    id="input-group-dropdown-2"
-                                    align="end"
-                                >
-                                    <Dropdown.Item href="#">Small</Dropdown.Item>
-                                    <Dropdown.Item href="#">Medium</Dropdown.Item>
-                                    <Dropdown.Item href="#">Large</Dropdown.Item>
-                                    <Dropdown.Divider />
-                                    <Dropdown.Item href="#">Separated link</Dropdown.Item>
-                                </DropdownButton>
-    
-                            <Form.Label>Step 2 - Choose Add-ons</Form.Label>
-                    
-                                {/*<FormControl aria-label="Text input with dropdown button" />*/}
-                                <DropdownButton
-                                    variant="outline-secondary"
-                                    title="Dropdown"
-                                    id="input-group-dropdown-2"
-                                    align="end"
-                                >
-                                    <Dropdown.Item href="#">Grommets</Dropdown.Item>
-                                    <Dropdown.Item href="#">Sewn Pocket</Dropdown.Item>
-                                    <Dropdown.Divider />
-                                    <Dropdown.Item href="#">Separated link</Dropdown.Item>
-                                </DropdownButton>
-
-                            <Form.Label>Step 3 - Choose a Custom Message</Form.Label>
-                            <InputGroup>
-                                <InputGroup.Text>Custom Message</InputGroup.Text>
-                                <FormControl as="textarea" aria-label="With textarea" />
-                            </InputGroup>
-                            <Form.Label>Upload Custom Design</Form.Label>
-                            <Form.Control type="file" />
-                            <Button variant="primary" type="submit">
-                                Submit
-                            </Button>
-                        </Form>
-                        <div>
-                        <Button onClick={addToCart}>Add to cart</Button>
-                        </div>
-                    </Container>
-                </Row>
-            </Container>
+        <div className="my-2">
+            <h2>Our Banners:</h2>
+            {state.banners.length ? (
+                <div className="flex-row">
+                {filterBanners().map((banner) => (
+                    <BannerItem
+                    key={banner._id}
+                    _id={banner._id}
+                    image={banner.image}
+                    name={banner.name}
+                    price={banner.price}
+                    quantity={banner.quantity}
+                    />
+                ))}
+                </div>
+            ) : (
+                <h3>You haven't added any products yet!</h3>
+            )}
+            {loading ? <img src={spinner} alt="loading" /> : null}
         </div>
     );
 }
