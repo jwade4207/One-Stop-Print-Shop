@@ -70,37 +70,35 @@ function Banner() {
                     <Container>
                         <Form>
                             <Form.Label>Step 1 - Choose size</Form.Label>
-                            <InputGroup className="mb-3">
-                                <FormControl aria-label="Text input with dropdown button" />
+                            
                                 <DropdownButton
                                     variant="outline-secondary"
                                     title="Dropdown"
                                     id="input-group-dropdown-2"
                                     align="end"
                                 >
-                                    <Dropdown.Item href="#">Action</Dropdown.Item>
-                                    <Dropdown.Item href="#">Another action</Dropdown.Item>
-                                    <Dropdown.Item href="#">Something else here</Dropdown.Item>
+                                    <Dropdown.Item href="#">Small</Dropdown.Item>
+                                    <Dropdown.Item href="#">Medium</Dropdown.Item>
+                                    <Dropdown.Item href="#">Large</Dropdown.Item>
                                     <Dropdown.Divider />
                                     <Dropdown.Item href="#">Separated link</Dropdown.Item>
                                 </DropdownButton>
-                            </InputGroup>
+    
                             <Form.Label>Step 2 - Choose Add-ons</Form.Label>
-                            <InputGroup className="mb-3">
-                                <FormControl aria-label="Text input with dropdown button" />
+                    
+                                {/*<FormControl aria-label="Text input with dropdown button" />*/}
                                 <DropdownButton
                                     variant="outline-secondary"
                                     title="Dropdown"
                                     id="input-group-dropdown-2"
                                     align="end"
                                 >
-                                    <Dropdown.Item href="#">Action</Dropdown.Item>
-                                    <Dropdown.Item href="#">Another action</Dropdown.Item>
-                                    <Dropdown.Item href="#">Something else here</Dropdown.Item>
+                                    <Dropdown.Item href="#">Grommets</Dropdown.Item>
+                                    <Dropdown.Item href="#">Sewn Pocket</Dropdown.Item>
                                     <Dropdown.Divider />
                                     <Dropdown.Item href="#">Separated link</Dropdown.Item>
                                 </DropdownButton>
-                            </InputGroup>
+
                             <Form.Label>Step 3 - Choose a Custom Message</Form.Label>
                             <InputGroup>
                                 <InputGroup.Text>Custom Message</InputGroup.Text>

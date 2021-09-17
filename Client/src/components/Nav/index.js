@@ -1,6 +1,8 @@
 import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+//need new logo & re-size
+import logo from '../../assets/images/logo.png'
 
 function Nav() {
 
@@ -43,8 +45,8 @@ function Nav() {
         <header className="flex-row px-1">
         <h1>
             <Link to="/">
-            <span role="img" aria-label="shopping bag">🛍️</span>
-            -One Stop Print Shop
+            <span img src={logo} alt="Logo"></span>
+            One Stop Print Shop
             </Link>
         </h1>
 
