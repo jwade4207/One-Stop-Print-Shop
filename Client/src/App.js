@@ -1,11 +1,14 @@
-import './App.css';
+import React from 'react';
+
 import Home from './pages/Home';
 import Detail from './pages/Detail';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Nav from './components/Nav';
+import './App.css';
+
 import { setContext } from '@apollo/client/link/context';
 import { StoreProvider } from './utils/GlobalState'
-import { Nav } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   ApolloClient,
