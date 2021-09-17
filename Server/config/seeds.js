@@ -14,7 +14,7 @@ db.once('open', async () => {
 
     await Banner.deleteMany();
 
-    const banners = await Banner.insertMAny([
+    const banners = await Banner.insertMany([
         {
             name:'small-banner-example ',
             customMessage:'this is a examply im just pluggin in right now and we can change later, but will have the layout for the 3 different sizes',
