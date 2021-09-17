@@ -1,53 +1,53 @@
 
 import React, { useEffect } from "react";
 import { useQuery } from '@apollo/client';
-import BannerItem from "./BannerItem";
-import { Form, DropdownButton, InputGroup, Dropdown, Container, Row, Col, Button, FormControl } from "react-bootstrap";
+import BannerItem from '../pages/BannerItem';
+//import { Form, DropdownButton, InputGroup, Dropdown, Container, Row, Col, Button, FormControl } from "react-bootstrap";
 import { useStoreContext } from '../utils/GlobalState';
-import { QUERY_BANNERS } from '../utils/queries';
+import { QUERY_BANNER } from '../utils/queries';
 import { UPDATE_BANNER } from "../utils/actions";
-import { ADD_TO_CART } from '../utils/actions';
+// import { ADD_TO_CART } from '../utils/actions';
 import { idbPromise } from '../utils/helpers';
+import spinner from '../../assets/spinner.gif';
 
 
 function Banner() {
 
     const [state, dispatch] = useStoreContext();
-    // const { loading, data } = useQuery(QUERY_BANNERS);
+    const { loading, data } = useQuery(QUERY_BANNER);
 
-    // const {
-    //     image,
-    //     name,
-    //     _id,
-    //     price,
-    //     quantity
-    //   } = item
+    useEffect(() => {
+        //if there is date to be stored
+        if (data) {
+            //store it in GlobalState object
+            dispatch({
+                type: UPDATE_BANNER,
+                banner: data.banners
+            });
+            //also save ea banner to IndexedDB using helper function
+            data.banners.forEach((banner) => {
+                idbPromise('banners', 'put', banner);
+            })
+            // add else if to check if `loading` is undefined in `useQuery()` Hook
+        } else if (!loading) {
+            // if we're offline, get all of the data from the `banners` store
+            idbPromise('banners', 'get').then((banners) => {
+                // use retrieved data to set global state for offline browsing
+                dispatch({
+                    type: UPDATE_BANNER,
+                    banners: banners
+                });
+            });
+        }
+    }, [data, loading, dispatch]);
 
-
-    // useEffect(() => {
-    //     //if there is date to be stored
-    //     if (data) {
-    //         //store it in GlobalState object
-    //         dispatch({
-    //             type: UPDATE_BANNERS,
-    //             banner: data.banners
-    //         });
-    //         //also save ea banner to IndexedDB using helper function
-    //         data.banners.forEach((banner) => {
-    //             idbPromise('banners', 'put', banner);
-    //         })
-    //         // add else if to check if `loading` is undefined in `useQuery()` Hook
-    //     } else if (!loading) {
-    //         // if we're offline, get all of the data from the `banners` store
-    //         idbPromise('banners', 'get').then((banners) => {
-    //             // use retrieved data to set global state for offline browsing
-    //             dispatch({
-    //                 type: UPDATE_BANNERS,
-    //                 banners: banners
-    //             });
-    //         });
-    //     }
-    // }, [data, loading, dispatch]);
+    function filterBanners() {
+        // if (!currentCategory) {
+        //     return state.products;
+        // }
+    
+        return state.banners.filter(banners => );
+    }
 
     return (
         <div className="my-2">

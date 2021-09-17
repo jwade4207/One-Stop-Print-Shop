@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { useStoreContext } from "../utils/GlobalState";
-import { QUERY_BANNERS } from "../utils/queries";
+import { QUERY_BANNER } from "../utils/queries";
 //import spinner from "../assets/spinner.gif";
 import Cart from "../components/Cart";
 import {
     REMOVE_FROM_CART,
     // UPDATE_CART_QUANTITY,
     ADD_TO_CART,
-    UPDATE_BANNERS,
+    UPDATE_BANNER,
 } from "../utils/actions";
 
 function Detail() {
@@ -18,7 +18,7 @@ function Detail() {
 
     const [currentBanner, setCurrentBanner] = useState({});
 
-    const { loading, data } = useQuery(QUERY_BANNERS);
+    const { loading, data } = useQuery(QUERY_BANNER);
 
     const { banners, cart } = state;
 
@@ -58,7 +58,7 @@ function Detail() {
             setCurrentBanner(banners.find((banner) => banner._id === id));
         } else if (data) {
             dispatch({
-                type: UPDATE_BANNERS,
+                type: UPDATE_BANNER,
                 banners: data.banners,
             });
         }
