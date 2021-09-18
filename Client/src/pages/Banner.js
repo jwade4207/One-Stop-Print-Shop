@@ -8,7 +8,7 @@ import { QUERY_BANNER } from '../utils/queries';
 import { UPDATE_BANNER } from "../utils/actions";
 // import { ADD_TO_CART } from '../utils/actions';
 import { idbPromise } from '../utils/helpers';
-import spinner from '../../assets/spinner.gif';
+import spinner from '../assets/images/spinner.gif';
 
 
 function Banner() {
@@ -41,20 +41,20 @@ function Banner() {
         }
     }, [data, loading, dispatch]);
 
-    function filterBanners() {
-        // if (!currentCategory) {
-        //     return state.products;
-        // }
+    // function filterBanners() {
+    //     // if (!currentCategory) {
+    //     //     return state.products;
+    //     // }
     
-        return state.banners.filter(banners => );
-    }
+    //     return state.banners.filter(banners => );
+    // }
 
     return (
         <div className="my-2">
             <h2>Our Banners:</h2>
             {state.banners.length ? (
                 <div className="flex-row">
-                {filterBanners().map((banner) => (
+                {state.map((banner) => (
                     <BannerItem
                     key={banner._id}
                     _id={banner._id}
