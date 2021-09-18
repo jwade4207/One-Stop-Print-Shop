@@ -18,7 +18,7 @@ db.once('open', async () => {
         {
             name:'small-banner-example ',
             // customMessage:'this is a examply im just pluggin in right now and we can change later, but will have the layout for the 3 different sizes',
-            image: 'insert-img',
+            image: 'BannerSM.png',
             price: 29.99,
             quantity: 1
         },
