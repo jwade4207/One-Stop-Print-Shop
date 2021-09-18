@@ -5,6 +5,7 @@ import Detail from './pages/Detail';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
+import Success from './pages/Success';
 import './App.css';
 
 import { setContext } from '@apollo/client/link/context';
@@ -48,6 +49,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/banners/:id" component={Detail} />
+            <Route exact path="/success" component={Success} />
           </Switch>
         </StoreProvider>
       </div>
