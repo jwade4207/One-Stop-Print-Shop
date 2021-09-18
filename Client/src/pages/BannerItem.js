@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { pluralize } from "../utils/helpers"
 import { useStoreContext } from '../utils/GlobalState';
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../utils/actions';
+import { idbPromise } from "../utils/helpers";
 
 function BannerItem(item) {
     const [state, dispatch] = useStoreContext();
@@ -12,9 +13,7 @@ function BannerItem(item) {
         name,
         _id,
         price,
-        quantity,
-        size,
-        customMessage
+        quantity
     } = item;
 
     const { cart } = state
@@ -27,11 +26,16 @@ function BannerItem(item) {
                 _id: _id,
                 purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
             });
+            idbPromise('cart', 'put', {
+                ...itemInCart,
+                purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+              });
         } else {
             dispatch({
                 type: ADD_TO_CART,
                 banner: { ...item, purchaseQuantity: 1 }
             });
+            idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 })
         }
     }
 

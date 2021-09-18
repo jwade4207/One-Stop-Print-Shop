@@ -3,7 +3,7 @@ import { useReducer } from 'react'
 import {
     UPDATE_BANNER,
     ADD_TO_CART,
-    ADD_MULTIPLE_TO_CART,
+    //ADD_MULTIPLE_TO_CART,
     REMOVE_FROM_CART,
     UPDATE_CART_QUANTITY,
     CLEAR_CART,

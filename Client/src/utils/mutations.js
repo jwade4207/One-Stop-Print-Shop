@@ -10,6 +10,19 @@ export const LOGIN = gql`
         }
     }
 `;
+export const ADD_ORDER = gql`
+  mutation addOrder($banners: [ID]!) {
+    addOrder(banners: $banners) {
+      purchaseDate
+      banners {
+        _id
+        name
+        price
+        quantity
+      }
+    }
+  }
+`;
 
 export const ADD_USER = gql`
     mutation addUser(
