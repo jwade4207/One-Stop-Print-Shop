@@ -3,19 +3,19 @@ import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
 import './style.css';
 import { useStoreContext } from '../../utils/GlobalState.js';
-import { TOGGLE_CART } from '../../utils/actions';
+import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
-import { QUERY_CHECKOUT } from '../../utils/queries';
-import { useLazyQuery } from '@apollo/client';
+// import { QUERY_CHECKOUT } from '../../utils/queries';
+// import { useLazyQuery } from '@apollo/client';
 
 const Cart = () => {
     const [state, dispatch] = useStoreContext();
-    const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+    //const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
     useEffect(() => {
         async function getCart() {
             const cart = await idbPromise('cart', 'get');
-            dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
+            dispatch({ type: ADD_MULTIPLE_TO_CART, banners: [...cart] });
         };
 
         if (!state.cart.length) {
@@ -37,17 +37,17 @@ const Cart = () => {
     }
 
     function submitCheckout() {
-        const productIds = [];
+        const bannerIds = [];
 
         state.cart.forEach((item) => {
             for (let i = 0; i < item.purchaseQuantity; i++) {
-                productIds.push(item._id);
+                bannerIds.push(item._id);
             }
         });
 
-        getCheckout({
-            variables: { products: productIds }
-        });
+        // getCheckout({
+        //     variables: { banners: bannerIds }
+        // });
     }
 
     if (!state.cartOpen) {
