@@ -7,7 +7,7 @@ import { QUERY_BANNER } from "../utils/queries";
 import Cart from "../components/Cart";
 import {
     REMOVE_FROM_CART,
-    // UPDATE_CART_QUANTITY,
+    UPDATE_CART_QUANTITY,
     ADD_TO_CART,
     UPDATE_BANNER,
 } from "../utils/actions";
@@ -24,12 +24,6 @@ function Detail() {
 
     const addToCart = () => {
 
-        const addToCart = () => {
-            dispatch({
-                type: ADD_TO_CART,
-                product: { ...currentBanner, purchaseQuantity: 1 }
-            });
-        };
         const itemInCart = cart.find((cartItem) => cartItem._id === id);
 
         if (itemInCart) {

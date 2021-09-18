@@ -5,12 +5,12 @@ import './style.css';
 import { useStoreContext } from '../../utils/GlobalState.js';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
-import { QUERY_CHECKOUT } from '../../utils/queries';
-import { useLazyQuery } from '@apollo/client';
+// import { QUERY_CHECKOUT } from '../../utils/queries';
+// import { useLazyQuery } from '@apollo/client';
 
 const Cart = () => {
     const [state, dispatch] = useStoreContext();
-    const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+    //const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
     useEffect(() => {
         async function getCart() {
@@ -45,9 +45,9 @@ const Cart = () => {
             }
         });
 
-        getCheckout({
-            variables: { banners: bannerIds }
-        });
+        // getCheckout({
+        //     variables: { banners: bannerIds }
+        // });
     }
 
     if (!state.cartOpen) {
