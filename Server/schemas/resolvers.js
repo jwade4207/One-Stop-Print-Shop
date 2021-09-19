@@ -9,18 +9,18 @@ const resolvers = {
             return await Size.find()
         },
         banners: async (parent, { size, name }) => {
-            const params = {};
+            // const params = {};
 
-            if (size) {
-                params.category = category;
-            }
+            // if (size) {
+            //     params.category = category;
+            // }
 
-            if (name) {
-                params.name = {
-                    $regex: name
-                };
-            }
-            return await Banner.find(params).populate('size');
+            // if (name) {
+            //     params.name = {
+            //         $regex: name
+            //     };
+            // }
+            return await Banner.find();
         },
         banner: async (parent, { _id }) => {
             return await Banner.findById(_id).populate('size');
