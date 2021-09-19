@@ -1,7 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Size, Order, Banner } = require('../models');
 const { signToken } = require('../utils/auth');
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+const stripe = require('stripe')('sk_test_51JZJBcGYNnIUnppEr2udhHHrUGo0HCGchLATQnJxX6FlRFAJnPQTlo2hvtcacgTw5r8uj4M3cRXXnFt5E0jolfGd008xM0LjRy');
 
 const resolvers = {
     Query: {
@@ -52,7 +52,7 @@ const resolvers = {
         },
         checkout: async (parent, args, context) => {
             const url = new URL(context.headers.referer).origin;
-            const order = new Order({ products: args.products });
+            const order = new Order({ banners: args.banners });
             const line_items = [];
 
             const { banners } = await order.populate('banners').execPopulate();
@@ -61,9 +61,9 @@ const resolvers = {
                 const banner = await stripe.banners.create({
                     name: banners[i].name,
                     customMessage: banners[i].customMessage,
-                    images: [`${url}/images/${products[i].image}`]
+                    images: [`${url}/images/${banner[i].image}`]
                 });
-
+                //generate price id using banner id
                 const price = await stripe.prices.create({
                     banner: banner.id,
                     unit_amount: banners[1].price * 100,

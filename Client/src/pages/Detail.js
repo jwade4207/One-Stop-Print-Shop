@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { useStoreContext } from "../utils/GlobalState";
 import { QUERY_BANNER } from "../utils/queries";
+import { idbPromise } from '../utils/helpers';
 //import spinner from "../assets/spinner.gif";
 import Cart from "../components/Cart";
 import {
@@ -32,22 +33,33 @@ function Detail() {
                 _id: id,
                 purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
             });
+            // if we're updating quantity, use existing item data and increment purchaseQuantity value by one
+            idbPromise('cart', 'put', {
+                ...itemInCart,
+                purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+            });
         } else {
             dispatch({
                 type: ADD_TO_CART,
                 banner: { ...currentBanner, purchaseQuantity: 1 },
             });
+            // if banner isn't in the cart yet, add it to the current shopping cart in IndexedDB
+            idbPromise('cart', 'put', { ...currentBanner, purchaseQuantity: 1 });
         }
-    };
+    }
+
 
     const removeFromCart = () => {
         dispatch({
             type: REMOVE_FROM_CART,
             _id: currentBanner._id,
         });
+        // upon removal from cart, delete the item from IndexedDB using the `currentProduct._id` to locate what to remove
+        idbPromise('cart', 'delete', { ...currentBanner });
     };
 
     useEffect(() => {
+        //Global Store
         if (banners.length) {
             setCurrentBanner(banners.find((banner) => banner._id === id));
         } else if (data) {
@@ -55,8 +67,20 @@ function Detail() {
                 type: UPDATE_BANNER,
                 banners: data.banners,
             });
+            data.products.forEach((banner) => {
+                idbPromise('banners', 'put', banner);
+            });
         }
-    }, [banners, data, dispatch, id]);
+        // get cache from idb
+        else if (!loading) {
+            idbPromise('banners', 'get').then((indexedBanners) => {
+                dispatch({
+                    type: UPDATE_BANNER,
+                    products: indexedBanners
+                });
+            });
+        }
+    }, [banners, data, loading, dispatch, id]);
 
     return (
         <>
