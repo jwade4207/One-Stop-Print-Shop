@@ -56,7 +56,7 @@ const typeDefs = gql`
 
     type Query {
         size: String
-        banners(size:ID, name: String): [Banner]
+        banners: [Banner]
         banner(_id: ID!): Banner
         user: User
         order(_id: ID!): Order

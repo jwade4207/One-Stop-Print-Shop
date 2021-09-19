@@ -54,7 +54,7 @@ function Banner() {
             <h2>Our Banners:</h2>
             {state.banners.length ? (
                 <div className="flex-row">
-                {state.map((banner) => (
+                {state.banners.map((banner) => (
                     <BannerItem
                     key={banner._id}
                     _id={banner._id}
