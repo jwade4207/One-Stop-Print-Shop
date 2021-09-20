@@ -11,6 +11,8 @@ const StoreProvider = ({ value = [], ...props }) => {
         banners: [],
         cart: [],
         cartOpen: false,
+        categories: [],
+        currentCategory: '',
     });
 
     console.log(state);

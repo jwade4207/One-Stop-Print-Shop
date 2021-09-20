@@ -1,19 +1,9 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-
-    input SizeInput {
-        name: String!
-    }
-
-    input BannerInput {
-        _id: ID
-        name: String
-        customMessage: String
-        image: String
-        quantity: Int
-        price: Float
-        size: SizeInput
+    type Category {
+    _id: ID
+    name: String
     }
 
     type User {
@@ -28,21 +18,16 @@ const typeDefs = gql`
     type Banner {
         _id: ID
         name: String
-        customMessage: String
         image: String
         quantity: Int
         price: Float
-        size: Size
+        category: Category
     }
 
     type Order {
         _id: ID
         purchaseDate: String
         banner: [Banner]
-    }
-
-    type Size {
-        name: String!
     }
     
     type Checkout {
@@ -55,8 +40,8 @@ const typeDefs = gql`
     }
 
     type Query {
-        size: String
-        banners: [Banner]
+        categories: [Category]
+        banners(category: ID, name: String): [Banner]
         banner(_id: ID!): Banner
         user: User
         order(_id: ID!): Order

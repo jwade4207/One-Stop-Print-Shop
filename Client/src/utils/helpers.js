@@ -8,7 +8,7 @@ export function pluralize(name, count) {
 //indexedDB function to open db connection, create object store & run transaction
 export function idbPromise(storeName, method, object) {
     return new Promise((resolve, reject) => {
-        // open connection to the database `shop-shop` with the version of 1
+        // open connection to the database `print shop` with the version of 1
         const request = window.indexedDB.open('one-stop-print-shop', 1);
 
         // create variables to hold reference to the database, transaction (tx), and object store
@@ -18,8 +18,8 @@ export function idbPromise(storeName, method, object) {
         request.onupgradeneeded = function (e) {
             const db = request.result;
             // create object store for each type of data and set "primary" key index to be the `_id` of the data
-            db.createObjectStore('banners', { keyPath: '_id' });
-            // db.createObjectStore('categories', { keyPath: '_id' });
+            db.createObjectStore('banner', { keyPath: '_id' });
+            db.createObjectStore('categories', { keyPath: '_id' });
             db.createObjectStore('cart', { keyPath: '_id' });
         };
 

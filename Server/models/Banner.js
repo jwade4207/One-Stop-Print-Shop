@@ -24,9 +24,9 @@ const bannerSchema = new Schema({
         min: 0,
         default: 0
     },
-    size: {
+    category: {
         type: Schema.Types.ObjectId,
-        ref: 'Size',
+        ref: 'Category',
         require: true
     }
 });

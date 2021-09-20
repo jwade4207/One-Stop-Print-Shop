@@ -1,35 +1,35 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Size, Order, Banner } = require('../models');
+const { User, Category, Order, Banner } = require('../models');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_51JZJBcGYNnIUnppEr2udhHHrUGo0HCGchLATQnJxX6FlRFAJnPQTlo2hvtcacgTw5r8uj4M3cRXXnFt5E0jolfGd008xM0LjRy');
 
 const resolvers = {
     Query: {
-        size: async () => {
-            return await Size.find()
+        categories: async () => {
+            return await Category.find();
         },
-        banners: async (parent, { size, name }) => {
-            // const params = {};
+        banners: async (parent, { category, name }) => {
+            const params = {};
 
-            // if (size) {
-            //     params.category = category;
-            // }
+            if (category) {
+                params.category = category;
+            }
 
-            // if (name) {
-            //     params.name = {
-            //         $regex: name
-            //     };
-            // }
-            return await Banner.find();
+            if (name) {
+                params.name = {
+                    $regex: name
+                };
+            }
+            return await Banner.find(params).populate('category');
         },
         banner: async (parent, { _id }) => {
-            return await Banner.findById(_id).populate('size');
+            return await Banner.findById(_id).populate('category');
         },
         user: async (parent, args, context) => {
             if (context.user) {
                 const user = await User.findById(context.user._id).populate({
                     path: 'orders.banners',
-                    populate: 'size'
+                    populate: 'category'
                 });
 
                 user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
@@ -42,7 +42,7 @@ const resolvers = {
             if (context.user) {
                 const user = await User.findById(context.user._id).populate({
                     path: 'orders.banners',
-                    populate: 'size'
+                    populate: 'category'
                 });
 
                 return user.orders.id(_id);
@@ -54,7 +54,6 @@ const resolvers = {
             const url = new URL(context.headers.referer).origin;
             const order = new Order({ banners: args.banners });
             const line_items = [];
-
             const { banners } = await order.populate('banners').execPopulate();
 
             for (let i = 0; i < banners.length; i++) {
