@@ -59,7 +59,7 @@ const resolvers = {
             for (let i = 0; i < banners.length; i++) {
                 const banner = await stripe.banners.create({
                     name: banners[i].name,
-                    customMessage: banners[i].customMessage,
+                    //customMessage: banners[i].customMessage,
                     images: [`${url}/images/${banner[i].image}`]
                 });
                 //generate price id using banner id
