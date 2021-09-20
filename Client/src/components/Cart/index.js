@@ -73,34 +73,34 @@ const Cart = () => {
 
     return (
         <div className="cart">
-        <div className="close" onClick={toggleCart}>[close]</div>
-        <h2>Shopping Cart</h2>
-        {state.cart.length ? (
-            <div>
-                {state.cart.map(item => (
-                    <CartItem key={item._id} item={item} />
-                ))}
+            <div className="close" onClick={toggleCart}>[close]</div>
+            <h2>Shopping Cart</h2>
+            {state.cart.length ? (
+                <div>
+                    {state.cart.map(item => (
+                        <CartItem key={item._id} item={item} />
+                    ))}
 
-                <div className="flex-row space-between">
-                    <strong>Total: ${calculateTotal()}</strong>
+                    <div className="flex-row space-between">
+                        <strong>Total: ${calculateTotal()}</strong>
 
-                    {
-                        Auth.loggedIn() ?
-                            <button onClick={submitCheckout}>
-                                Checkout
-                            </button>
-                            :
-                            <span>(log in to check out)</span>
-                    }
+                        {
+                            Auth.loggedIn() ?
+                                <button onClick={submitCheckout}>
+                                    Checkout
+                                </button>
+                                :
+                                <span>(log in to check out)</span>
+                        }
+                    </div>
                 </div>
-            </div>
-        ) : (
-                <h3>
-                    You haven't added anything to your cart yet!
-                </h3>
-            )}
-    </div>
-);
+            ) : (
+                    <h3>
+                        You haven't added anything to your cart yet!
+                    </h3>
+                )}
+        </div>
+    );
 };
 
 export default Cart;
