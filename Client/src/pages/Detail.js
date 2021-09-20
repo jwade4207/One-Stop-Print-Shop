@@ -67,7 +67,7 @@ function Detail() {
                 type: UPDATE_BANNER,
                 banners: data.banners,
             });
-            data.products.forEach((banner) => {
+            data.banners.forEach((banner) => {
                 idbPromise('banners', 'put', banner);
             });
         }
