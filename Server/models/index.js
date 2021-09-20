@@ -1,6 +1,6 @@
 const User = require('./User');
 const Order = require('./Order');
 const Banner = require('./Banner');
-//const Size = require('./Size');
+const Category = require('./Category');
 
-module.exports = { User, Order, Banner };
+module.exports = { User, Order, Banner, Category };

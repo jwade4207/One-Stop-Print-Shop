@@ -6,7 +6,7 @@ import BannerItem from '../pages/BannerItem';
 import { useStoreContext } from '../utils/GlobalState';
 import { QUERY_BANNER } from '../utils/queries';
 import { UPDATE_BANNER } from "../utils/actions";
-// import { ADD_TO_CART } from '../utils/actions';
+
 import { idbPromise } from '../utils/helpers';
 import spinner from '../assets/images/spinner.gif';
 
@@ -14,6 +14,7 @@ import spinner from '../assets/images/spinner.gif';
 function Banner() {
 
     const [state, dispatch] = useStoreContext();
+    const { currentCategory } = state;
     const { loading, data } = useQuery(QUERY_BANNER);
 
     useEffect(() => {
@@ -41,20 +42,20 @@ function Banner() {
         }
     }, [data, loading, dispatch]);
 
-    // function filterBanners() {
-    //     // if (!currentCategory) {
-    //     //     return state.products;
-    //     // }
+    function filterBanners() {
+        if (!currentCategory) {
+            return state.banners;
+        }
     
-    //     return state.banners.filter(banners => );
-    // }
+        return state.banners.filter(banner => banner.category._id === currentCategory);
+    }
 
     return (
         <div className="my-2">
             <h2>Our Banners:</h2>
             {state.banners.length ? (
                 <div className="flex-row">
-                {state.banners.map((banner) => (
+                {filterBanners().map((banner) => (
                     <BannerItem
                     key={banner._id}
                     _id={banner._id}

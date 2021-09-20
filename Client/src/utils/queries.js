@@ -20,10 +20,47 @@ export const QUERY_USER = gql`
     }
 `;
 
+// export const QUERY_BANNER = gql`
+//     query QueryBanners {
+//         banners {
+//             name _id
+//         }
+//     }
+// `;
 export const QUERY_BANNER = gql`
-    query QueryBanners {
+    query getBanners($category: ID) {
+        banners(category: $category) {
+            _id
+            name
+            price
+            quantity
+            image
+            category {
+                _id
+            }
+        }
+    }
+`;
+
+export const QUERY_ALL_BANNERS = gql`
+    {
         banners {
-            name _id
+            _id
+            name
+            price
+            quantity
+            category {
+                name
+            }
+        }
+    }
+`;
+
+export const QUERY_CATEGORIES = gql`
+    {
+        categories {
+        _id
+        name
         }
     }
 `;

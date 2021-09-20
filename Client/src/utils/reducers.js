@@ -3,6 +3,8 @@ import { useReducer } from 'react'
 import {
     UPDATE_BANNER,
     ADD_TO_CART,
+    UPDATE_CATEGORIES,
+    UPDATE_CURRENT_CATEGORY,
     //ADD_MULTIPLE_TO_CART,
     REMOVE_FROM_CART,
     UPDATE_CART_QUANTITY,
@@ -17,6 +19,17 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 banners: [...action.banner],
+            };
+        // if action type value is the value of `UPDATE_CATEGORIES`, return a new state object with an updated categories array
+        case UPDATE_CATEGORIES:
+            return {
+                ...state,
+                categories: [...action.categories]
+            };
+        case UPDATE_CURRENT_CATEGORY:
+            return {
+                ...state,
+                currentCategory: action.currentCategory
             };
         case ADD_TO_CART:
             return {
