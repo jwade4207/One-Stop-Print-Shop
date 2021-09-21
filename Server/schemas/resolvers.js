@@ -54,18 +54,20 @@ const resolvers = {
             const url = new URL(context.headers.referer).origin;
             const order = new Order({ banners: args.banners });
             const line_items = [];
+            console.log(args.banners)
             const { banners } = await order.populate('banners').execPopulate();
-
+            console.log(order)
+            console.log(banners)
             for (let i = 0; i < banners.length; i++) {
-                const banner = await stripe.banners.create({
+                const banner = await stripe.products.create({
                     name: banners[i].name,
                     //customMessage: banners[i].customMessage,
-                    images: [`${url}/images/${banner[i].image}`]
+                    images: [`${url}/images/${banners[i].image}`]
                 });
                 //generate price id using banner id
                 const price = await stripe.prices.create({
-                    banner: banner.id,
-                    unit_amount: banners[1].price * 100,
+                    product: banner.id,
+                    unit_amount: banners[i].price * 100,
                     currency: 'usd',
                 });
 
