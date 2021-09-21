@@ -5,6 +5,7 @@ import Detail from './pages/Detail';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
+import Footer from './components/Footer';
 import Success from './pages/Success';
 import './App.css';
 
@@ -51,6 +52,7 @@ function App() {
             <Route exact path="/banners/:id" component={Detail} />
             <Route exact path="/success" component={Success} />
           </Switch>
+          <Footer/>
         </StoreProvider>
       </div>
     </Router>
