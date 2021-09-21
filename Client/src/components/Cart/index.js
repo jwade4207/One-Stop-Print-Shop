@@ -55,7 +55,7 @@ const Cart = () => {
                 bannerIds.push(item._id);
             }
         });
-
+        console.log(bannerIds)
         getCheckout({
             variables: { banners: bannerIds }
         });
