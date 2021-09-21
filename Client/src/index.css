@@ -1,6 +1,6 @@
 :root {
-  --primary: #012c67;
-  --secondary: #7dc4fb;
+  --primary: #2F559A;
+  --secondary: #72a3fe;
   --tertiary: #f99f04;
   --light: #fafafa;
   --dark: #021526;
@@ -31,7 +31,7 @@ body {
 
 
 #logo {
-  max-height: 3rem;
+  max-height: 4rem;
 }
 
 a {
