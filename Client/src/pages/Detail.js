@@ -54,7 +54,7 @@ function Detail() {
             type: REMOVE_FROM_CART,
             _id: currentBanner._id,
         });
-        // upon removal from cart, delete the item from IndexedDB using the `currentProduct._id` to locate what to remove
+        // upon removal from cart, delete the item from IndexedDB using the `currentBanner._id` to locate what to remove
         idbPromise('cart', 'delete', { ...currentBanner });
     };
 
@@ -68,15 +68,15 @@ function Detail() {
                 banners: data.banners,
             });
             data.banners.forEach((banner) => {
-                idbPromise('banners', 'put', banner);
+                idbPromise('banner', 'put', banner);
             });
         }
         // get cache from idb
         else if (!loading) {
-            idbPromise('banners', 'get').then((indexedBanners) => {
+            idbPromise('banner', 'get').then((indexedBanners) => {
                 dispatch({
                     type: UPDATE_BANNER,
-                    products: indexedBanners
+                    banners: indexedBanners
                 });
             });
         }
