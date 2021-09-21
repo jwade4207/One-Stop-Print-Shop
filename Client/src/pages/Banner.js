@@ -27,16 +27,16 @@ function Banner() {
             });
             //also save ea banner to IndexedDB using helper function
             data.banners.forEach((banner) => {
-                idbPromise('banners', 'put', banner);
+                idbPromise('banner', 'put', banner);
             })
             // add else if to check if `loading` is undefined in `useQuery()` Hook
         } else if (!loading) {
             // if we're offline, get all of the data from the `banners` store
-            idbPromise('banners', 'get').then((banners) => {
+            idbPromise('banner', 'get').then((banner) => {
                 // use retrieved data to set global state for offline browsing
                 dispatch({
                     type: UPDATE_BANNER,
-                    banners: banners
+                    banners: banner
                 });
             });
         }
@@ -67,7 +67,7 @@ function Banner() {
                 ))}
                 </div>
             ) : (
-                <h3>You haven't added any products yet!</h3>
+                <h3>You haven't added any banners yet!</h3>
             )}
             {loading ? <img src={spinner} alt="loading" /> : null}
         </div>
