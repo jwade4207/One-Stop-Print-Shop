@@ -19,6 +19,7 @@ npm i stripe stripe-js
 
 ### **Usage**
 
+https://one-stop-print-shop.herokuapp.com/
 
 <img src="./Client/public/screenshot.png" height=300>
 
@@ -36,11 +37,11 @@ npm i stripe stripe-js
 
 
 ### *Contributions*
-Ryan Blessing
-Cody Concklin
-Jennifer Lindsey
-Jerod Wade
-Conor Welsh
+* Ryan Blessing
+* Cody Concklin
+* Jennifer Lindsey
+* Jerod Wade
+* Conor Welsh
 
 ### *Licenses*
 MIT license
