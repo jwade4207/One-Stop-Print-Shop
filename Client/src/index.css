@@ -34,6 +34,13 @@ body {
   max-height: 4rem;
 }
 
+.nav-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
 a {
   color: var(--tertiary);
   text-decoration: none;
@@ -111,6 +118,20 @@ input:focus {
   flex-wrap: wrap;
 }
 
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 70px;
+  
+}
+
+ul {
+  text-decoration: none;
+  list-style-type: none;
+}
+
 .space-between {
   justify-content: space-between;
 }
@@ -122,6 +143,7 @@ input:focus {
 .mx-1 {
   margin-right: var(--spacing-one);
   margin-left: var(--spacing-one);
+  
 }
 
 .mx-2 {

@@ -42,9 +42,9 @@ function Nav() {
     }
 
     return (
-        <header className="flex-row px-1">
+        <header className="nav-container">
         <h1>
-            <Link to="/">
+            <Link className = "nav-link" to="/">
             <img src={logo} alt="Logo" id="logo"></img>
             One Stop Print Shop
             </Link>
