@@ -13,7 +13,7 @@ import spinner from '../assets/images/spinner.gif';
 
 function Banner() {
 
-    const [state, dispatch] = useStoreContext();
+    const [ state, dispatch ] = useStoreContext();
     const { currentCategory } = state;
     const { loading, data } = useQuery(QUERY_BANNER);
 
@@ -51,24 +51,43 @@ function Banner() {
     }
 
     return (
-        <div className="my-2">
+        <div className="my-2 banner-container">
             <h2>Our Banners:</h2>
-            {state.banners.length ? (
-                <div className="flex-row">
-                {filterBanners().map((banner) => (
-                    <BannerItem
-                    key={banner._id}
-                    _id={banner._id}
-                    image={banner.image}
-                    name={banner.name}
-                    price={banner.price}
-                    quantity={banner.quantity}
-                    />
-                ))}
+            { state.banners.length ? (
+                <>
+                    <div className="flex-row">
+                  { filterBanners().filter(b => {
+                    return b.image.startsWith("Banner") == false
+                  }).map((banner) => (
+                      <BannerItem
+                      key={banner._id}
+                      _id={banner._id}
+                      image={banner.image}
+                      name={banner.name}
+                      price={banner.price}
+                      quantity={banner.quantity}
+                      />
+                  )) }
                 </div>
+                  <div className="flex-row">
+                  { filterBanners().filter(b => {
+                    return b.image.startsWith("Banner")
+                  }).map((banner) => (
+                      <BannerItem
+                      key={banner._id}
+                      _id={banner._id}
+                      image={banner.image}
+                      name={banner.name}
+                      price={banner.price}
+                      quantity={banner.quantity}
+                      />
+                  ))}
+                  </div>
+              </>
             ) : (
                 <h3>You haven't added any banners yet!</h3>
-            )}
+            )
+            }
             {loading ? <img src={spinner} alt="loading" /> : null}
         </div>
     );
